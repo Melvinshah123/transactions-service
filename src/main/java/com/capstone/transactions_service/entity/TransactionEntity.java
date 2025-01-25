@@ -14,30 +14,29 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Data 
+@Data
 @Entity
-@Table(name="transactions")
+@Table(name = "transactions")
 public class TransactionEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="transaction_id")
-    private String transactionId;
+    @Column(name = "transaction_id")
+    private int transactionId;
 
-    @Column(name="email")
+    @Column(name = "email")
     private String email;
 
-    @Column(name="transaction_type")
+    @Column(name = "transaction_type")
     private String transactionType;
 
-    @Column(name="amount")
-    private int amount;
+    @Column(name = "amount")
+    private double amount;
 
-    @Column(name="transaction_date_time") 
+    @Column(name = "transaction_date_time")
     private LocalDateTime transactionDateTime;
 
-    @Column(name="community_id")
-     private int communityId;
-
+    @Column(name = "community_id")
+    private int communityId;
 
 }
