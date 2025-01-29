@@ -27,6 +27,9 @@ public class TransactionEntity {
     @Column(name = "email")
     private String email;
 
+    @Column(name = "community_id")
+    private int communityId;
+
     @Column(name = "transaction_type")
     private String transactionType;
 
@@ -35,8 +38,5 @@ public class TransactionEntity {
 
     @Column(name = "transaction_date_time")
     private LocalDateTime transactionDateTime;
-
-    @Column(name = "community_id")
-    private int communityId;
 
 }

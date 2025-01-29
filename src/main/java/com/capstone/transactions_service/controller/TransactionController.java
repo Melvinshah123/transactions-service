@@ -43,7 +43,7 @@ public class TransactionController {
     }
 
     @GetMapping("/users/{email}")
-    public ResponseEntity<List<TransactionOutputPojo>> getAllTransactionsFromCommunityId(@PathVariable String email) {
+    public ResponseEntity<List<TransactionOutputPojo>> getAllTransactionsFromEmail(@PathVariable String email) {
         return new ResponseEntity<List<TransactionOutputPojo>>(
                 transactionService.getAllTransactionsFromEmail(email), HttpStatus.OK);
     }

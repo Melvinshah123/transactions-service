@@ -12,8 +12,8 @@ import lombok.NoArgsConstructor;
 
 public class TransactionOutputPojo {
     private int transactionId;
-    private String email;
-    private int communityId;
+    private UserOutputDataPojo user;
+    private CommunityPojo community;
     private String transactionType;
     private double amount;
     private LocalDateTime transactionDateTime;
