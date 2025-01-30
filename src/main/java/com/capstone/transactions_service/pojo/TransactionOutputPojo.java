@@ -16,5 +16,6 @@ public class TransactionOutputPojo {
     private CommunityPojo community;
     private String transactionType;
     private double amount;
+    private double interestAmount;
     private LocalDateTime transactionDateTime;
 }

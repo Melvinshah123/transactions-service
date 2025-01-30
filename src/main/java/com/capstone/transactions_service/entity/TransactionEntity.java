@@ -36,6 +36,9 @@ public class TransactionEntity {
     @Column(name = "amount")
     private double amount;
 
+    @Column(name = "interest_amount")
+    private double interestAmount;
+
     @Column(name = "transaction_date_time")
     private LocalDateTime transactionDateTime;
 

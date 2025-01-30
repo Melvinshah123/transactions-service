@@ -13,6 +13,7 @@ import com.capstone.transactions_service.entity.TransactionEntity;
 import com.capstone.transactions_service.pojo.CommunityMembershipPojo;
 import com.capstone.transactions_service.pojo.CommunityPojo;
 import com.capstone.transactions_service.pojo.CommunityUpdateAmountPojo;
+import com.capstone.transactions_service.pojo.DateTimePojo;
 import com.capstone.transactions_service.pojo.TransactionInputPojo;
 import com.capstone.transactions_service.pojo.TransactionOutputPojo;
 import com.capstone.transactions_service.pojo.UserOutputDataPojo;
@@ -68,25 +69,34 @@ public class TransactionService {
         return convertPojoToEntity(transactionEntity);
     }
 
+    @SuppressWarnings("null")
     public TransactionOutputPojo addTransaction(TransactionInputPojo newTransaction) {
         TransactionEntity transactionEntity = new TransactionEntity();
         double amount = newTransaction.getAmount();
+        double interestAmount = newTransaction.getInterestAmount();
+        double newAmount = amount + interestAmount;
         if (newTransaction.getTransactionType().equals("Debit")) {
+            newAmount *= -1;
             amount *= -1;
         }
         CommunityUpdateAmountPojo requestData = new CommunityUpdateAmountPojo(newTransaction.getCommunityId(),
-                newTransaction.getEmail(), amount);
+                newTransaction.getEmail(), newAmount);
         RestClient restClient = RestClient.create();
         restClient.put()
                 .uri("http://localhost:5002/api/communities/amount")
                 .body(requestData)
                 .retrieve().body(CommunityPojo.class);
+        requestData.setAmount(amount);
         restClient.put()
                 .uri("http://localhost:5005/api/CommunityMembership/amount")
                 .body(requestData)
                 .retrieve().body(CommunityMembershipPojo.class);
         BeanUtils.copyProperties(newTransaction, transactionEntity);
-        transactionEntity.setTransactionDateTime(LocalDateTime.now());
+
+        DateTimePojo dateTimePojo = restClient.put().uri("http://localhost:5010/api/time")
+                .body(new DateTimePojo(0, LocalDateTime.now())).retrieve().body(DateTimePojo.class);
+        transactionEntity.setTransactionDateTime(dateTimePojo.getDateTime());
+
         return convertPojoToEntity(transactionRepository.saveAndFlush(transactionEntity));
     }
 

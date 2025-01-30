@@ -7,6 +7,7 @@ CREATE TABLE transactions
     transaction_type VARCHAR
     (255) NOT NULL,
     amount DOUBLE NOT NULL,
+    interest_amount DOUBLE NOT NULL,
     transaction_date_time TIMESTAMP NOT NULL,
     community_id INT NOT NULL
 );

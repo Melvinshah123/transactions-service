@@ -13,4 +13,5 @@ public class TransactionInputPojo {
     private int communityId;
     private String transactionType;
     private double amount;
+    private double interestAmount;
 }
