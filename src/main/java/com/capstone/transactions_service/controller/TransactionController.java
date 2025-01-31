@@ -1,8 +1,10 @@
 package com.capstone.transactions_service.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,8 +12,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.capstone.transactions_service.entity.TransactionEntity;
 import com.capstone.transactions_service.pojo.TransactionGetByCommAndEmailPojo;
 import com.capstone.transactions_service.pojo.TransactionInputPojo;
 import com.capstone.transactions_service.pojo.TransactionOutputPojo;
@@ -60,5 +64,14 @@ public class TransactionController {
     @PostMapping(" ")
     public ResponseEntity<TransactionOutputPojo> addTransaction(@RequestBody TransactionInputPojo newTransaction) {
         return new ResponseEntity<>(transactionService.addTransaction(newTransaction), HttpStatus.OK);
+    }
+
+    @GetMapping("/communities/dateRange")
+    public List<TransactionEntity> getTransactionsByCommunityIdAndDateRange(
+            @RequestParam int communityId,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate) {
+        
+        return transactionService.getTransactionsByCommunityIdAndDateRange(communityId, startDate, endDate);
     }
 }

@@ -1,5 +1,6 @@
 package com.capstone.transactions_service.repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,4 +17,6 @@ public interface TransactionRepository extends JpaRepository<TransactionEntity, 
     List<TransactionEntity> findByEmailAndCommunityId(String email, int communityId);
 
     // List<TransactionEntity> findByEmailStartingWith(String emailPrefix);
+    List<TransactionEntity> findByCommunityIdAndTransactionTypeAndTransactionDateTimeBetween(
+            int communityId, String transactionType,LocalDateTime startDateTime, LocalDateTime endDateTime);
 }

@@ -100,4 +100,13 @@ public class TransactionService {
         return convertPojoToEntity(transactionRepository.saveAndFlush(transactionEntity));
     }
 
+    
+    public List<TransactionEntity> getTransactionsByCommunityIdAndDateRange(
+            int communityId,
+            LocalDateTime startDate,
+            LocalDateTime endDate) {
+        
+        return transactionRepository.findByCommunityIdAndTransactionTypeAndTransactionDateTimeBetween(communityId, "Credit",startDate, endDate);
+    }
+
 }
