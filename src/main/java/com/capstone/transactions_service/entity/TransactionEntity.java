@@ -1,5 +1,6 @@
 package com.capstone.transactions_service.entity;
 
+<<<<<<< HEAD
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
@@ -42,4 +43,8 @@ public class TransactionEntity {
     @Column(name = "transaction_date_time")
     private LocalDateTime transactionDateTime;
 
+=======
+public class TransactionEntity {
+
+>>>>>>> parent of 97bf3ca (second commit)
 }

@@ -1,5 +1,6 @@
 package com.capstone.transactions_service.service;
 
+<<<<<<< HEAD
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -109,4 +110,8 @@ public class TransactionService {
         return transactionRepository.findByCommunityIdAndTransactionTypeAndTransactionDateTimeBetween(communityId, "Credit",startDate, endDate);
     }
 
+=======
+public class TransactionService {
+
+>>>>>>> parent of 97bf3ca (second commit)
 }

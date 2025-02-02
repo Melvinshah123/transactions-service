@@ -1,5 +1,6 @@
 package com.capstone.transactions_service.repository;
 
+<<<<<<< HEAD
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -11,6 +12,9 @@ import com.capstone.transactions_service.entity.TransactionEntity;
 @Repository
 public interface TransactionRepository extends JpaRepository<TransactionEntity, Integer> {
     List<TransactionEntity> findByEmail(String email);
+=======
+public class TransactionRepository {
+>>>>>>> parent of 97bf3ca (second commit)
 
     List<TransactionEntity> findByCommunityId(int communityId);
 

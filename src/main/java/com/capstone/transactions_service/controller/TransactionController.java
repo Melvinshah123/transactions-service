@@ -1,5 +1,6 @@
 package com.capstone.transactions_service.controller;
 
+<<<<<<< HEAD
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -74,4 +75,8 @@ public class TransactionController {
         
         return transactionService.getTransactionsByCommunityIdAndDateRange(communityId, startDate, endDate);
     }
+=======
+public class TransactionController {
+
+>>>>>>> parent of 97bf3ca (second commit)
 }
